@@ -20,23 +20,27 @@ public class StudentiController {
     @Autowired
     private StudentiService studentiService;
 
-    @GetMapping ("/all")
+    @GetMapping("/all")
 //    public List <StudentiDTO> findAllStudent() {
 //        return studentiService.findAllStudent();
     // se si necessita di una response entity
     public ResponseEntity<List<StudentiDTO>> findAllStudent() {
-            List<StudentiDTO> allStudentDto = studentiService.findAllStudent();
-            // Restituisci una ResponseEntity con status 200 (OK) e la lista di studenti
-            return new ResponseEntity<>(allStudentDto, HttpStatus.OK);
-        }
+        List<StudentiDTO> allStudentDto = studentiService.findAllStudent();
+        // Restituisci una ResponseEntity con status 200 (OK) e la lista di studenti
+        return new ResponseEntity<>(allStudentDto, HttpStatus.OK);
+    }
 
 
     @GetMapping("/{email}")
     public ResponseEntity<StudentiDTO> findStudentByEmaill(@PathVariable String email) {
-        StudentiDTO studentiDTO =studentiService.findStudentByEmail(email);
+        StudentiDTO studentiDTO = studentiService.findStudentByEmail(email);
         return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 
     }
 
+    @GetMapping("startWith/{letter}")
+    public ResponseEntity <List<StudentiDTO>> findStudentByA(@PathVariable String letter) {
+        List<StudentiDTO> studentiDTO = studentiService.findByLetter(letter);
+        return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
+    }
 }
-

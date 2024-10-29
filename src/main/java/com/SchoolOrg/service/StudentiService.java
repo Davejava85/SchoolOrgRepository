@@ -39,6 +39,20 @@ public class StudentiService {
         }
     }
 
+    public List<StudentiDTO> findByLetter(String letter) {
+        List<Studenti> allStudents = studentiRepository.findAll();
+
+        List<StudentiDTO> studentWithLetter= allStudents.stream()
+                .filter(studente -> studente.getNome().startsWith(letter))  // Usa lettera come filtro
+                .map(StudentiMapper.INSTANCE::toDTO)
+                .collect(Collectors.toList());
+
+        if (studentWithLetter.isEmpty()) {
+            throw new RuntimeException("There are not name with" + letter);
+        }
+        return studentWithLetter;
+    }
+
 
     public StudentiDTO findStudentByEmail(String email) {
         Studenti studentEmail = studentiRepository.findByEmail(email);
