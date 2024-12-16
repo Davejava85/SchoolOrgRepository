@@ -78,18 +78,18 @@ public class StudentiService {
     }
 
 
-//    public StudentiDTO updateStudente(StudentiDTO studentiDTO) {
-//        Optional<Studenti> existingStudenteOpt = studentiRepository.findById(studentiDTO.getId());
-//
-//        if (existingStudenteOpt.isPresent()) {
-//            Studenti studenti = studentiMapper.toEntity(studentiDTO);
-//            studenti = studentiRepository.save(studenti);
-//            return studentiMapper.toDTO(studenti);
-//
-//        } else {
-//            throw new ResourceNotFoundException("STUDENT DOES NOT EXIST");
-//        }
-//    }
+    public StudentiDTO updateStudente(StudentiDTO studentiDTO) {
+        Optional<Studenti> existingStudenteOpt = studentiRepository.findById(studentiDTO.getId());
+
+        if (existingStudenteOpt.isPresent()) {
+            Studenti studenti = studentiMapper.toEntity(studentiDTO);
+            studenti = studentiRepository.save(studenti);
+            return studentiMapper.toDTO(studenti);
+
+        } else {
+            throw new ResourceNotFoundException("STUDENT DOES NOT EXIST");
+        }
+    }
 }
 
 
