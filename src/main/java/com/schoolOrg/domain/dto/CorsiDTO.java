@@ -1,4 +1,4 @@
-package com.SchoolOrg.domain.dto;
+package com.schoolOrg.domain.dto;
 
 import lombok.*;
 

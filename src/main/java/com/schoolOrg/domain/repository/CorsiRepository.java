@@ -1,6 +1,6 @@
-package com.SchoolOrg.domain.repository;
+package com.schoolOrg.domain.repository;
 
-import com.SchoolOrg.domain.model.Corsi;
+import com.schoolOrg.domain.model.Corsi;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

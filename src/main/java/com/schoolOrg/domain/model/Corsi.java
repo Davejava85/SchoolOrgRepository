@@ -1,11 +1,13 @@
-package com.SchoolOrg.domain.model;
+package com.schoolOrg.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
-    @Entity
+@Entity
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
@@ -23,4 +25,7 @@ import lombok.*;
 
         @Column(name = "descrizione")
         private String descrizione;
+
+        @OneToMany(mappedBy = "corsi", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Iscrizioni> iscrizioni = new ArrayList<>();
 }

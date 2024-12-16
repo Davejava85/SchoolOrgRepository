@@ -1,6 +1,5 @@
-package com.SchoolOrg.domain.dto;
+package com.schoolOrg.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Data
@@ -13,14 +12,13 @@ public class StudentiDTO
 {
    // @JsonProperty("id")
     private int id;
-   // @JsonProperty("nome")
+   //  @JsonProperty("nome")
     private String nome;
-   // @JsonProperty("cognome")
+  //  @JsonProperty("cognome")
     private String cognome;
-    //@JsonProperty("email")
+  //  @JsonProperty("email")
     private String email;
 
-// public  StudentiDTO() {
-// }
+
 
 }
