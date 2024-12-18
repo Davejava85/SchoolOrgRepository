@@ -7,6 +7,7 @@ import com.schoolOrg.exception.BadRequestException;
 import com.schoolOrg.exception.ResourceNotFoundException;
 import com.schoolOrg.service.mapper.StudentiMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,25 @@ public class StudentiService {
 
     @Autowired
     private StudentiMapper studentiMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public void registerUser(String email, String rawPassword) {
+        if (studentiRepository.findByEmail(email).isPresent()) {
+            throw new BadRequestException("Email already exists");
+        }
+        // Cripta la password
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+
+        // Crea un nuovo utente
+        Studenti newStudenti = new Studenti();
+        newStudenti.setEmail(email);
+        newStudenti.setPassword(encodedPassword);
+
+        studentiRepository.save(newStudenti);
+    }
+
 
 
     public List<StudentiDTO> findAllStudent() {
@@ -70,6 +90,7 @@ public class StudentiService {
         Optional<Studenti> existingStudenteOpt = studentiRepository.findByEmail(studentiDTO.getEmail());
         if (existingStudenteOpt.isEmpty()) {
             Studenti studenti = studentiMapper.toEntity(studentiDTO);
+            studenti.setPassword(passwordEncoder.encode(studentiDTO.getPassword()));
             studenti = studentiRepository.save(studenti);
             return studentiMapper.toDTO(studenti);
         } else {
@@ -83,6 +104,7 @@ public class StudentiService {
 
         if (existingStudenteOpt.isPresent()) {
             Studenti studenti = studentiMapper.toEntity(studentiDTO);
+            studenti.setPassword(passwordEncoder.encode(studentiDTO.getPassword()));
             studenti = studentiRepository.save(studenti);
             return studentiMapper.toDTO(studenti);
 

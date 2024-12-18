@@ -19,6 +19,8 @@ public class StudentiDTO
   //  @JsonProperty("email")
     private String email;
 
+    private String password;
+
 
 
 }

@@ -31,6 +31,9 @@ public class Studenti {
         @Column(name = "email", nullable = false, length = 100, unique = true)
         private String email;
 
+        @Column(nullable = false)
+        private String password;
+
       //  @OneToMany(mappedBy = "studenti", cascade = CascadeType.ALL, orphanRemoval = true)
        // private List<Iscrizioni> iscrizioni = new ArrayList<>();
 
