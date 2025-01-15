@@ -12,6 +12,7 @@ public class CorsiDTO {
     private int id;
     private String nomeCorso;
     private String descrizione;
+    private Long professori;
 
 
 

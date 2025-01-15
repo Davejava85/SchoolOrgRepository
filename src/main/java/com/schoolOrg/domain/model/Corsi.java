@@ -26,6 +26,14 @@ import java.util.List;
         @Column(name = "descrizione")
         private String descrizione;
 
+        @Column(name = "professore_id")
+        private int professori;
+
+
+
+//        @OneToMany(mappedBy = "professori", cascade = CascadeType.ALL, orphanRemoval = true)
+//        private List<Corsi> corsi = new ArrayList<>();
+
         @OneToMany(mappedBy = "corsi", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Iscrizioni> iscrizioni = new ArrayList<>();
 }

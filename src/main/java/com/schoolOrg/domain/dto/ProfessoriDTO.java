@@ -8,8 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 
-public class StudentiDTO
-{
+public class ProfessoriDTO {
 
     private int id;
     private String nome;
@@ -17,5 +16,4 @@ public class StudentiDTO
     private String email;
     private String password;
     private String ruolo;
-
 }

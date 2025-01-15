@@ -62,6 +62,14 @@ public class StudentiService {
 
         }
 
+    public List<StudentiDTO> findStudentByNomeAndCognome (String nome, String cognome){
+        List<Studenti> studenti = studentiRepository.findByNomeAndCognome(nome, cognome);
+        if (studenti.isEmpty()) {
+            throw new ResourceNotFoundException("Studente non trovato");
+        }
+        return studentiMapper.toDTOList(studenti);
+    }
+
 
     public List<StudentiDTO> findByLetter(String letter) {
         List<Studenti> allStudents = studentiRepository.findAll();
@@ -87,15 +95,14 @@ public class StudentiService {
 
 
     public StudentiDTO createStudente(StudentiDTO studentiDTO) {
-        Optional<Studenti> existingStudenteOpt = studentiRepository.findByEmail(studentiDTO.getEmail());
-        if (existingStudenteOpt.isEmpty()) {
+        if (studentiRepository.findByEmail(studentiDTO.getEmail()).isPresent()) {
+            throw new BadRequestException("Student already exists with email: " + studentiDTO.getEmail());
+        }
             Studenti studenti = studentiMapper.toEntity(studentiDTO);
             studenti.setPassword(passwordEncoder.encode(studentiDTO.getPassword()));
             studenti = studentiRepository.save(studenti);
             return studentiMapper.toDTO(studenti);
-        } else {
-            throw new BadRequestException("Student already exist");
-        }
+
     }
 
 

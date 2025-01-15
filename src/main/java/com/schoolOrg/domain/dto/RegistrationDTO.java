@@ -1,5 +1,6 @@
 package com.schoolOrg.domain.dto;
 
+
 import lombok.*;
 
 @Data
@@ -7,15 +8,12 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+public class RegistrationDTO {
 
-public class StudentiDTO
-{
 
-    private int id;
     private String nome;
     private String cognome;
     private String email;
     private String password;
     private String ruolo;
-
 }

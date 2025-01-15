@@ -31,10 +31,18 @@ public class StudentiController {
             return new ResponseEntity<>(allStudentDto, HttpStatus.OK);
         }
 
+    @GetMapping("/nome-cognome")
+    public ResponseEntity<List<StudentiDTO>> findStudentByNomeAndCognome (
+//            @RequestBody String nome,String cognome)
+            @RequestParam String nome,
+            @RequestParam String cognome){
+        List<StudentiDTO> studentiDTOList = studentiService.findStudentByNomeAndCognome(nome, cognome);
+        return new ResponseEntity<>(studentiDTOList,HttpStatus.OK);
+    }
 
 
     @GetMapping("/{email}")
-    public ResponseEntity<StudentiDTO> findStudentByEmaill(@PathVariable String email) {
+    public ResponseEntity<StudentiDTO> findStudentByEmail(@PathVariable String email) {
         StudentiDTO studentiDTO = studentiService.findStudentByEmail(email);
         return new ResponseEntity<>(studentiDTO, HttpStatus.OK);
 
